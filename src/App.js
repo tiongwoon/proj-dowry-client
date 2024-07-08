@@ -75,7 +75,7 @@ function App() {
     setIsLoading(true);
 
     axios
-      .post("http://localhost:3001/dowry", {
+      .post("https://dowry-7d0f4912450f.herokuapp.com/dowry", {
         date: monthYear.current.value + "-01",
         amount: amountDowry.current.value,
         state: state.current.value,
@@ -100,25 +100,27 @@ function App() {
     //if pass in anything in the second variable, will run when the var is updated
     //if there is no [] array specified, it will run everytime something changes
 
-    axios.get("http://localhost:3001/dowry/getAverage").then((response) => {
-      const data = response.data;
+    axios
+      .get("https://dowry-7d0f4912450f.herokuapp.com/dowry/getAverage")
+      .then((response) => {
+        const data = response.data;
 
-      const month_year_labels = data.map((item) => item.month_year);
-      const data_points = data.map((item) => item.avg);
+        const month_year_labels = data.map((item) => item.month_year);
+        const data_points = data.map((item) => item.avg);
 
-      setChartData({
-        labels: month_year_labels,
-        datasets: [
-          {
-            label: "Dataset 1",
-            data: data_points,
-            borderColor: "rgb(16, 44, 87)",
-            backgroundColor: "rgba(16, 44, 87, 0.5)",
-            pointRadius: 4,
-          },
-        ],
+        setChartData({
+          labels: month_year_labels,
+          datasets: [
+            {
+              label: "Dataset 1",
+              data: data_points,
+              borderColor: "rgb(16, 44, 87)",
+              backgroundColor: "rgba(16, 44, 87, 0.5)",
+              pointRadius: 4,
+            },
+          ],
+        });
       });
-    });
   }, []);
 
   return (

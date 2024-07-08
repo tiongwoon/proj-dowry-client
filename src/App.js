@@ -155,7 +155,7 @@ function App() {
               onSubmit={handleSubmit}
             >
               <div>
-                <label for="date">Date: </label>
+                <label for="date">Month: </label>
                 <input
                   ref={monthYear}
                   type="month"
